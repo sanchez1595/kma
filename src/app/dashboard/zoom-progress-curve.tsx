@@ -10,7 +10,8 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartOptions
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 
@@ -25,7 +26,7 @@ ChartJS.register(
 )
 
 export function ZoomProgressCurve() {
-  const options = {
+  const options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {

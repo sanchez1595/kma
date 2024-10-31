@@ -42,8 +42,8 @@ export function ProgressCurve() {
         min: 0,
         max: 120,
         ticks: {
-          callback: function(value) {
-            return value + '%'
+          callback: function(tickValue: string | number) {
+            return tickValue + '%'
           }
         }
       }
