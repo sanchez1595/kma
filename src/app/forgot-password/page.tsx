@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { sendPasswordResetEmail, onAuthStateChanged } from 'firebase/auth'
+import { sendPasswordResetEmail, onAuthStateChanged, User } from 'firebase/auth'
 import { auth } from '../../../firebaseConfig'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,12 +12,12 @@ import { useRouter } from 'next/navigation'
 
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState('')
-  const [message, setMessage] = useState(null)
-  const [error, setError] = useState(null)
+  const [message, setMessage] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) {
         router.push('/dashboard')
       }
@@ -26,14 +26,18 @@ export default function ForgotPasswordForm() {
     return () => unsubscribe()
   }, [router])
 
-  const handleResetPassword = async (e) => {
+  const handleResetPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       await sendPasswordResetEmail(auth, email)
       setMessage('Password reset email sent. Check your inbox.')
       setError(null)
-    } catch (error) {
-      setError(error.message)
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message)
+      } else {
+        setError('An unknown error occurred.')
+      }
       setMessage(null)
     }
   }
@@ -65,7 +69,7 @@ export default function ForgotPasswordForm() {
           </form>
         </CardContent>
         <CardFooter className="flex flex-col">
-          <Button className="w-full" type="submit" onClick={handleResetPassword}>Reset Password</Button>
+          <Button className="w-full" type="submit" form="reset-password-form">Reset Password</Button>
           <Link href="/" className="text-sm text-blue-500 hover:underline mt-2">
             Back to Login
           </Link>
