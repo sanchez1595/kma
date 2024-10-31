@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { signInWithEmailAndPassword, onAuthStateChanged, User } from 'firebase/auth'
 import { auth } from '../../firebaseConfig'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -13,11 +13,11 @@ import { useRouter } from 'next/navigation'
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user: User | null) => {
       if (user) {
         router.push('/dashboard')
       }
@@ -26,13 +26,17 @@ export default function Home() {
     return () => unsubscribe()
   }, [router])
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
       await signInWithEmailAndPassword(auth, email, password)
       router.push('/dashboard')
     } catch (error) {
-      setError(error.message)
+      if (error instanceof Error) {
+        setError(error.message)
+      } else {
+        setError('An unknown error occurred')
+      }
     }
   }
 
@@ -69,14 +73,14 @@ export default function Home() {
               </div>
             </div>
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+            <CardFooter className="flex flex-col px-0 pt-6">
+              <Button className="w-full" type="submit">Login</Button>
+              <Link href="/forgot-password" className="text-sm text-blue-500 hover:underline mt-2">
+                Forgot password?
+              </Link>
+            </CardFooter>
           </form>
         </CardContent>
-        <CardFooter className="flex flex-col">
-          <Button className="w-full" type="submit" onClick={handleLogin}>Login</Button>
-          <Link href="/forgot-password" className="text-sm text-blue-500 hover:underline mt-2">
-            Forgot password?
-          </Link>
-        </CardFooter>
       </Card>
     </div>
   )
