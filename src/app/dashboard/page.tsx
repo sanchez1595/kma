@@ -53,7 +53,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-100">
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">KoryAdmin</h1>
+          <h1 className="text-2xl font-bold text-gray-800">KMA</h1>
           <div className="flex items-center space-x-4">
             <span className="text-gray-600">Bienvenido, {user.email}</span>
             <Button onClick={handleSignOut} variant="outline">Cerrar Sesión</Button>
