@@ -76,6 +76,11 @@ body {
     @apply bg-background text-foreground;
     touch-action: manipulation;
   }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    font-size: 16px; /* Previene el zoom en iOS */
+  }
 }
 
 .swiper-button-next,
