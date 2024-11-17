@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { Card, CardContent } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 const data = [
@@ -19,43 +19,28 @@ const data = [
   { month: 'Dic', Meta: 12824.48, Real: 0 }
 ]
 
-const evolutionDataUF = [
-  { month: 'Enero', presupuesto: 4274.84, real: 5288.80, cumplimiento: 123.7 },
-  { month: 'Febrero', presupuesto: 12824.48, real: 6390.00, cumplimiento: 49.8 },
-  { month: 'Marzo', presupuesto: 8549.64, real: 17082.00, cumplimiento: 199.8 },
-  { month: 'Abril', presupuesto: 8549.64, real: 0, cumplimiento: 0 },
-  { month: 'Mayo', presupuesto: 8549.64, real: 0, cumplimiento: 0 },
-  { month: 'Junio', presupuesto: 8549.64, real: 0, cumplimiento: 0 },
-  { month: 'Julio', presupuesto: 8549.64, real: 0, cumplimiento: 0 },
-  { month: 'Agosto', presupuesto: 12824.54, real: 0, cumplimiento: 0 },
-  { month: 'Septiembre', presupuesto: 12824.48, real: 0, cumplimiento: 0 },
-  { month: 'Octubre', presupuesto: 8549.64, real: 0, cumplimiento: 0 },
-  { month: 'Noviembre', presupuesto: 12824.54, real: 0, cumplimiento: 0 },
-  { month: 'Diciembre', presupuesto: 12824.48, real: 0, cumplimiento: 0 }
-]
-
-const evolutionDataUnits = [
-  { month: 'Enero', presupuesto: 1, real: 1, cumplimiento: 100.0 },
-  { month: 'Febrero', presupuesto: 3, real: 1, cumplimiento: 33.3 },
-  { month: 'Marzo', presupuesto: 2, real: 3, cumplimiento: 150.0 },
-  { month: 'Abril', presupuesto: 2, real: 0, cumplimiento: 0 },
-  { month: 'Mayo', presupuesto: 2, real: 0, cumplimiento: 0 },
-  { month: 'Junio', presupuesto: 2, real: 0, cumplimiento: 0 },
-  { month: 'Julio', presupuesto: 2, real: 0, cumplimiento: 0 },
-  { month: 'Agosto', presupuesto: 3, real: 0, cumplimiento: 0 },
-  { month: 'Septiembre', presupuesto: 3, real: 0, cumplimiento: 0 },
-  { month: 'Octubre', presupuesto: 2, real: 0, cumplimiento: 0 },
-  { month: 'Noviembre', presupuesto: 3, real: 0, cumplimiento: 0 },
-  { month: 'Diciembre', presupuesto: 3, real: 0, cumplimiento: 0 }
+const evolutionData = [
+  { month: 'Enero', presupuestoUF: 4274.84, realUF: 5288.80, cumplimientoUF: 123.7, presupuestoUnidad: 1, realUnidad: 1, cumplimientoUnidad: 100.0 },
+  { month: 'Febrero', presupuestoUF: 12824.48, realUF: 6390.00, cumplimientoUF: 49.8, presupuestoUnidad: 3, realUnidad: 1, cumplimientoUnidad: 33.3 },
+  { month: 'Marzo', presupuestoUF: 8549.64, realUF: 17082.00, cumplimientoUF: 199.8, presupuestoUnidad: 2, realUnidad: 3, cumplimientoUnidad: 150.0 },
+  { month: 'Abril', presupuestoUF: 8549.64, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 2, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Mayo', presupuestoUF: 8549.64, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 2, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Junio', presupuestoUF: 8549.64, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 2, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Julio', presupuestoUF: 8549.64, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 2, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Agosto', presupuestoUF: 12824.54, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 3, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Septiembre', presupuestoUF: 12824.48, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 3, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Octubre', presupuestoUF: 8549.64, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 2, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Noviembre', presupuestoUF: 12824.54, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 3, realUnidad: 0, cumplimientoUnidad: 0 },
+  { month: 'Diciembre', presupuestoUF: 12824.48, realUF: 0, cumplimientoUF: 0, presupuestoUnidad: 3, realUnidad: 0, cumplimientoUnidad: 0 }
 ]
 
 export function ProjectSummary() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Gráfico Principal */}
-      <Card className="p-4">
-        <div className="bg-rose-100/50 p-3 rounded-t-lg">
-          <h2 className="text-lg font-semibold text-rose-900">Avance mensual Meta vs Real</h2>
+      <div className="bg-white p-4 rounded-lg">
+        <div className="bg-blue-100/50 p-3 rounded-t-lg">
+          <h2 className="text-lg font-semibold text-blue-900">Avance mensual Meta vs Real</h2>
         </div>
         <div className="pt-4 h-[300px] sm:h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
@@ -65,143 +50,139 @@ export function ProjectSummary() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Meta" fill="#D1D5DB" />
-              <Bar dataKey="Real" fill="#FCA5A5" />
+              <Bar dataKey="Meta" fill="#93C5FD" />
+              <Bar dataKey="Real" fill="#3B82F6" />
             </BarChart>
           </ResponsiveContainer>
         </div>
-      </Card>
+      </div>
 
-      {/* Métricas */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+      <Separator />
+
+      {/* Métricas Segmentadas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Sección Ventas */}
+        <div className="space-y-4">
+          <div className="bg-blue-100/50 p-3 rounded-lg">
+            <h2 className="text-lg font-semibold text-blue-900">Ventas</h2>
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">119.695 UF</p>
               <p className="text-sm text-gray-500 mt-1">PPTO Anual</p>
             </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">28.761 UF</p>
               <p className="text-sm text-gray-500 mt-1">Acumulado</p>
             </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+          </div>
+        </div>
+
+        {/* Sección % Cumplimiento */}
+        <div className="space-y-4">
+          <div className="bg-blue-100/50 p-3 rounded-lg">
+            <h2 className="text-lg font-semibold text-blue-900">% Cumplimiento</h2>
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">24,0%</p>
               <p className="text-sm text-gray-500 mt-1">Cumplimiento PPTO Anual</p>
             </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">30,6%</p>
               <p className="text-sm text-gray-500 mt-1">Cumplimiento PPTO Hasta Hoy</p>
             </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+          </div>
+        </div>
+
+        {/* Sección Velocidad Unidad */}
+        <div className="space-y-4">
+          <div className="bg-blue-100/50 p-3 rounded-lg">
+            <h2 className="text-lg font-semibold text-blue-900">Velocidad Unidad</h2>
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">2,3</p>
               <p className="text-sm text-gray-500 mt-1">Velocidad PPTO</p>
             </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
+          </div>
+          <div className="bg-white p-4 rounded-lg">
             <div className="text-center">
               <p className="text-2xl sm:text-3xl font-bold text-gray-900">0,6</p>
               <p className="text-sm text-gray-500 mt-1">Velocidad Actual</p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
 
-      {/* Tablas Evolutivas */}
-      <div className="space-y-6">
-        <div className="bg-rose-100/50 p-3 rounded-lg">
-          <h2 className="text-lg font-semibold text-rose-900">Evolutivo</h2>
+      <Separator />
+
+      {/* Tabla Evolutiva Combinada */}
+      <div className="space-y-8">
+        <div className="bg-blue-100/50 p-3 rounded-lg">
+          <h2 className="text-lg font-semibold text-blue-900">Evolutivo</h2>
         </div>
         
-        {/* Tabla UF */}
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead className="text-xs uppercase bg-gray-50">
-              <tr>
-                <th className="px-4 py-3 border">Mes</th>
-                <th className="px-4 py-3 border">Presupuesto UF</th>
-                <th className="px-4 py-3 border">Real UF</th>
-                <th className="px-4 py-3 border">Cumplimiento mensual</th>
-              </tr>
-            </thead>
-            <tbody>
-              {evolutionDataUF.map((row, index) => (
-                <tr key={index} className="bg-white border-b">
-                  <td className="px-4 py-2 border font-medium">{row.month}</td>
-                  <td className="px-4 py-2 border text-right">{row.presupuesto.toLocaleString('es-CL', { minimumFractionDigits: 2 })}</td>
-                  <td className="px-4 py-2 border text-right">{row.real.toLocaleString('es-CL', { minimumFractionDigits: 2 })}</td>
-                  <td className="px-4 py-2 border text-right">{row.cumplimiento.toFixed(1)}%</td>
-                </tr>
-              ))}
-              <tr className="bg-gray-50 font-semibold">
-                <td className="px-4 py-2 border">Total</td>
-                <td className="px-4 py-2 border text-right">
-                  {evolutionDataUF.reduce((sum, row) => sum + row.presupuesto, 0).toLocaleString('es-CL', { minimumFractionDigits: 2 })}
-                </td>
-                <td className="px-4 py-2 border text-right">
-                  {evolutionDataUF.reduce((sum, row) => sum + row.real, 0).toLocaleString('es-CL', { minimumFractionDigits: 2 })}
-                </td>
-                <td className="px-4 py-2 border text-right">
-                  {(evolutionDataUF.reduce((sum, row) => sum + row.real, 0) / 
-                    evolutionDataUF.reduce((sum, row) => sum + row.presupuesto, 0) * 100).toFixed(1)}%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        {/* Tabla Unidades */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead className="text-xs uppercase bg-gray-50">
-              <tr>
-                <th className="px-4 py-3 border">Mes</th>
-                <th className="px-4 py-3 border">Presupuesto unidad</th>
-                <th className="px-4 py-3 border">Real unidad</th>
-                <th className="px-4 py-3 border">Cumplimiento mensual</th>
-              </tr>
-            </thead>
-            <tbody>
-              {evolutionDataUnits.map((row, index) => (
-                <tr key={index} className="bg-white border-b">
-                  <td className="px-4 py-2 border font-medium">{row.month}</td>
-                  <td className="px-4 py-2 border text-right">{row.presupuesto}</td>
-                  <td className="px-4 py-2 border text-right">{row.real}</td>
-                  <td className="px-4 py-2 border text-right">{row.cumplimiento.toFixed(1)}%</td>
-                </tr>
-              ))}
-              <tr className="bg-gray-50 font-semibold">
-                <td className="px-4 py-2 border">Total</td>
-                <td className="px-4 py-2 border text-right">
-                  {evolutionDataUnits.reduce((sum, row) => sum + row.presupuesto, 0)}
-                </td>
-                <td className="px-4 py-2 border text-right">
-                  {evolutionDataUnits.reduce((sum, row) => sum + row.real, 0)}
-                </td>
-                <td className="px-4 py-2 border text-right">
-                  {(evolutionDataUnits.reduce((sum, row) => sum + row.real, 0) / 
-                    evolutionDataUnits.reduce((sum, row) => sum + row.presupuesto, 0) * 100).toFixed(1)}%
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="inline-block min-w-full align-middle">
+            <div className="overflow-hidden border-b border-gray-200 sm:rounded-lg">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Presupuesto UF</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Real UF</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cumplimiento UF</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Presupuesto Unidad</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Real Unidad</th>
+                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cumplimiento Unidad</th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {evolutionData.map((row, index) => (
+                    <tr key={index}>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{row.month}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.presupuestoUF.toLocaleString('es-CL', { minimumFractionDigits: 2 })}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.realUF.toLocaleString('es-CL', { minimumFractionDigits: 2 })}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.cumplimientoUF.toFixed(1)}%</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.presupuestoUnidad}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.realUnidad}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{row.cumplimientoUnidad.toFixed(1)}%</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot className="bg-gray-50">
+                  <tr>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Total</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {evolutionData.reduce((sum, row) => sum + row.presupuestoUF, 0).toLocaleString('es-CL', { minimumFractionDigits: 2 })}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {evolutionData.reduce((sum, row) => sum + row.realUF, 0).toLocaleString('es-CL', { minimumFractionDigits: 2 })}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {(evolutionData.reduce((sum, row) => sum + row.realUF, 0) / 
+                        evolutionData.reduce((sum, row) => sum + row.presupuestoUF, 0) * 100).toFixed(1)}%
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {evolutionData.reduce((sum, row) => sum + row.presupuestoUnidad, 0)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {evolutionData.reduce((sum, row) => sum + row.realUnidad, 0)}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {(evolutionData.reduce((sum, row) => sum + row.realUnidad, 0) / 
+                        evolutionData.reduce((sum, row) => sum + row.presupuestoUnidad, 0) * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

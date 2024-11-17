@@ -3,6 +3,7 @@ import { CheckCircle } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ProjectSummary } from './project-summary'
+import { VentasView } from './ventas-view'
 
 const projectData = {
   name: "Residencial Los Álamos",
@@ -80,17 +81,7 @@ export function ProjectView({ projectId }: { projectId: string }) {
         </div>
         <div className="p-4 sm:p-6">
           {activeTab === "resumen" && <ProjectSummary />}
-          {activeTab === "ventas" && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Ventas</CardTitle>
-                <CardDescription>Información detallada sobre las ventas del proyecto</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm sm:text-base">Aquí se mostrarían gráficos y tablas con información sobre las ventas del proyecto.</p>
-              </CardContent>
-            </Card>
-          )}
+          {activeTab === "ventas" && <VentasView/>}
           {activeTab === "indicadores" && (
             <Card>
               <CardHeader>
