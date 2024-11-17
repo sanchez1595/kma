@@ -105,7 +105,7 @@ export function Header() {
         <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Image
-              src="/logo.svg"
+              src="__logo.svg"
               alt="Logo"
               width={120}
               height={40}
