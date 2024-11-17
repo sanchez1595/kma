@@ -61,17 +61,17 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div className="flex flex-col items-center">
           <Image
-            src="/logo.png"
-            alt="Logo de la empresa"
-            width={150}
-            height={150}
-            priority
+            src="/__logo.svg"
+            alt="Logo de la inmobiliaria"
+            width={200}
+            height={40}
+            className="w-48 sm:w-56 md:w-64"
           />
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-2xl sm:text-3xl font-extrabold text-gray-900 text-center">
             Iniciar sesión en su cuenta
           </h2>
         </div>
@@ -84,7 +84,7 @@ export default function LoginPage() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="tu@ejemplo.com" {...field} />
+                    <Input placeholder="tu@ejemplo.com" {...field} className="w-full" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,6 +102,7 @@ export default function LoginPage() {
                         type={showPassword ? "text" : "password"} 
                         placeholder="••••••" 
                         {...field} 
+                        className="w-full pr-10"
                       />
                       <Button
                         type="button"
@@ -124,7 +125,7 @@ export default function LoginPage() {
               )}
             />
             {loginError && (
-              <div className="text-red-500 text-sm">{loginError}</div>
+              <div className="text-red-500 text-sm text-center">{loginError}</div>
             )}
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}

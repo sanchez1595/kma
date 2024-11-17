@@ -57,8 +57,8 @@ export function ProjectSummary() {
         <div className="bg-rose-100/50 p-3 rounded-t-lg">
           <h2 className="text-lg font-semibold text-rose-900">Avance mensual Meta vs Real</h2>
         </div>
-        <div className="pt-4">
-          <ResponsiveContainer width="100%" height={300}>
+        <div className="pt-4 h-[300px] sm:h-[400px]">
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
@@ -72,12 +72,12 @@ export function ProjectSummary() {
         </div>
       </Card>
 
-      {/* Primera fila de métricas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Métricas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card className="bg-white">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">119.695 UF</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">119.695 UF</p>
               <p className="text-sm text-gray-500 mt-1">PPTO Anual</p>
             </div>
           </CardContent>
@@ -85,27 +85,7 @@ export function ProjectSummary() {
         <Card className="bg-white">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">24,0%</p>
-              <p className="text-sm text-gray-500 mt-1">Cumplimiento PPTO Anual</p>
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="bg-white">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">2,3</p>
-              <p className="text-sm text-gray-500 mt-1">Velocidad PPTO</p>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Segunda fila de métricas */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-white">
-          <CardContent className="pt-6">
-            <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">28.761 UF</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">28.761 UF</p>
               <p className="text-sm text-gray-500 mt-1">Acumulado</p>
             </div>
           </CardContent>
@@ -113,7 +93,15 @@ export function ProjectSummary() {
         <Card className="bg-white">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">30,6%</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">24,0%</p>
+              <p className="text-sm text-gray-500 mt-1">Cumplimiento PPTO Anual</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-white">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">30,6%</p>
               <p className="text-sm text-gray-500 mt-1">Cumplimiento PPTO Hasta Hoy</p>
             </div>
           </CardContent>
@@ -121,7 +109,15 @@ export function ProjectSummary() {
         <Card className="bg-white">
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-3xl font-bold text-gray-900">0,6</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">2,3</p>
+              <p className="text-sm text-gray-500 mt-1">Velocidad PPTO</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="bg-white">
+          <CardContent className="pt-6">
+            <div className="text-center">
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">0,6</p>
               <p className="text-sm text-gray-500 mt-1">Velocidad Actual</p>
             </div>
           </CardContent>

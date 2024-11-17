@@ -16,28 +16,42 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebaseConfig'
+import { useRouter } from 'next/navigation'
 
 export function Header() {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false)
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth)
+      // Redirige al usuario a la página de inicio de sesión
+      router.push('/')
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error)
+    }
+  }
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white shadow-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <Image
-                src="/_Logo.svg"
+                src="/__logo.svg"
                 alt="Logo de la inmobiliaria"
                 width={120}
                 height={40}
               />
             </Link>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="flex items-center space-x-1">
+                <Button variant="ghost" size="sm" className="hidden sm:flex items-center space-x-1">
                   <Globe className="h-4 w-4" />
                   <span>ES</span>
                   <ChevronDown className="h-4 w-4" />
@@ -74,16 +88,16 @@ export function Header() {
                     />
                   </div>
                   <span className="hidden sm:inline-block">Juan Pérez</span>
-                  <ChevronDown className="h-4 w-4" />
+                  <ChevronDown className="h-4 w-4 hidden sm:block" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>Perfil</DropdownMenuItem>
                 <DropdownMenuItem>Configuración</DropdownMenuItem>
-                <DropdownMenuItem>Cerrar sesión</DropdownMenuItem>
+                <DropdownMenuItem onSelect={handleLogout}>Cerrar sesión</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button variant="ghost" size="icon" aria-label="Ayuda">
+            <Button variant="ghost" size="icon" aria-label="Ayuda" className="hidden sm:inline-flex">
               <HelpCircle className="h-5 w-5" />
             </Button>
           </div>
